@@ -1,0 +1,95 @@
+<!--MAIN HTML FILE SHOWING TO-DO LIST-->
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>MediLoc</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<div class="float-container">
+  <div class="float-child">
+    <h1>MEDILOC</h1>
+  <div class="float-child">
+    <div class="float-grandchild">
+      <a href="/database" class="header-buttons">See Database</a>
+    </div>
+    <!--<div class="float-grandchild">
+      <a href="/run" class="header-buttons">Run Algorithm</a>
+    </div>-->
+  </div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block body %}
+<div id="map" style="width:100%;height:400px"></div>
+
+<div class="form">
+  <form action="/" method="POST">
+    <input type="hidden" name="coordinatesLong" id="coordinatesLong">
+    <input type="hidden" name="coordinatesLat" id="coordinatesLat">
+    <input type="number" name="population" id="population" placeholder="Enter number of cases">
+    <input type="submit" value="Add Village">
+  </form>
+</div>
+</div>
+
+<script>
+  function initMap(longitudespass, latitudespass, populationpass) {
+    var longitudesjson = {{ longitudespass | tojson }}
+    var latitudesjson = {{ latitudespass | tojson }}
+    var populationjson = {{ populationpass | tojson }}
+
+    var myLatlng = {lat: -0.1755567264775804, lng: 118.47206037499998};
+
+    // Create the initial InfoWindow.
+    var infoWindow = new google.maps.InfoWindow(
+          {content: 'Click the village location on the map!', position: myLatlng});
+    
+    if (longitudesjson.length < 1) {
+      var map = new google.maps.Map(
+          document.getElementById('map'), {
+            zoom: 5,
+            center: myLatlng
+            });
+    
+      infoWindow.open(map);
+
+    } else {
+      var myLatlng = {lat: longitudesjson[longitudesjson.length-1][0], lng: latitudesjson[latitudesjson.length-1][0]};
+
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 10, center: myLatlng});
+      
+      for (var i = 0; i < longitudesjson.length; i++) {
+        var latitude = latitudesjson[i][0]
+        var longitude = longitudesjson[i][0]
+        var population = populationjson[i][0]
+        var marker = new google.maps.Marker({position: {lat: longitude, lng: latitude}, map:map, title: `Population: ${population}`});
+      }
+    }
+
+    // Configure the click listener.
+    map.addListener('click', function(mapsMouseEvent) {
+      // Close the current InfoWindow.
+      infoWindow.close();
+
+      // Create a new InfoWindow.
+      infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+      infoWindow.setContent(mapsMouseEvent.latLng.toString());
+      infoWindow.open(map);
+
+      var coordinates = mapsMouseEvent.latLng.toString();
+      var commaPos = coordinates.indexOf(',');
+      var coordinatesLong = parseFloat(coordinates.substring(1, commaPos-6));
+      var coordinatesLat = parseFloat(coordinates.substring(commaPos + 1, coordinates.length-8));
+
+      document.getElementById("coordinatesLong").value=coordinatesLong;
+      document.getElementById("coordinatesLat").value=coordinatesLat;
+    });
+  }
+</script>
+<script defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBqR-FE77yyQymhrUNEQKIT8RiSLUAVdw&callback=initMap">
+</script>
+{% endblock %}
