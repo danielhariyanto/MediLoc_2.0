@@ -9,12 +9,10 @@
 
 {% block body %}
   <div class="content">
-    <h1 style="text-align: center">Update Village</h1>
+    <h2 style="text-align: center">Update Number of Cases</h2>
 
     <div class="form">
       <form action="/update/{{village.id}}" method="POST">
-        <input type="number" step="any" name="coordinatesLong" id="coordinatesLong" value="{{village.longitude}}">
-        <input type="number" step="any" name="coordinatesLat" id="coordinatesLat" value="{{village.latitude}}">
         <input type="number" name="population" id="population" value="{{village.population}}">
         <input type="submit" value="Update">
       </form>

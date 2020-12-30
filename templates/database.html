@@ -24,7 +24,7 @@
       <th>Longitude</th>
       <th>Latitude</th>
       <th>Cases</th>
-      <th>Updated</th>
+      <th>Assigned Center #</th>
       <th></th>
     </tr>
     {% for village in villages %}  <!--for loop using Jinja syntax-->
@@ -32,7 +32,7 @@
         <td>{{ village.longitude }}</td>
         <td>{{ village.latitude }}</td>
         <td>{{ village.population }}</td>
-        <td>{{ village.date_created.date() }}</td>
+        <td>{{ village.assigned_center }}</td>
         <td>
           <a href="/update/{{village.id}}">Update</a>
           <a style="margin-left: 2em" href="/delete/{{village.id}}">Delete</a>

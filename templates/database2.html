@@ -1,0 +1,41 @@
+<!--MAIN HTML FILE SHOWING TO-DO LIST-->
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>MediLoc</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+  <h1 style="text-align: center">MediLoc</h1>
+  {% if centers|length < 1 %}
+  <h4 style="text-align: center">Optimal Center Locations</h4>
+  {% else %}
+  <table>
+    <colgroup>
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+    </colgroup>
+    <tr>
+      <th>Center #</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Manpower</th>
+    </tr>
+    {% for center in centers %}  <!--for loop using Jinja syntax-->
+      <tr>
+        <td>{{ center.colorID }}</td>
+        <td>{{ center.longitude }}</td>
+        <td>{{ center.latitude }}</td>
+        <td>{{ center.manpower }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+<div>
+    <a href="/" class="button">Back</a>
+</div>
+{% endblock %}

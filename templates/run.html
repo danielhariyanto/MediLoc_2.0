@@ -1,0 +1,22 @@
+<!--USED FOR RUNNING ALGORITHM-->
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>MediLoc</title>
+{% endblock %}
+
+
+{% block body %}
+  <div class="content">
+    <h2 style="text-align: center">Run Algorithm</h2>
+
+    <div class="form">
+      <form action="/run" method="POST">
+        <input type="number" step="any" name="centroids" id="centroids">
+        <input type="number" step="any" name="manpower" id="manpower">
+        <input type="submit" value="Run">
+      </form>
+    </div>
+  </div>
+{% endblock %}
