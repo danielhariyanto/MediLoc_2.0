@@ -1,0 +1,41 @@
+@import './base';
+
+.main__prompt {
+	width: calc(100% - 20px);
+	border: 2px solid $tertiary-color;
+	border-radius: 20px;
+	padding: 30px 20px;
+	h2 {
+		font-size: 2rem;
+		color: $tertiary-color;
+	}
+	form {
+		margin: 10px 0 50px 0;
+		position: relative;
+		label {
+			display: block;
+			color: #fff;
+			padding: 10px 0;
+		}
+		input {
+			color: $primary-color;
+			font-family: $main-font;
+			font-size: 1.2rem;
+			border-radius: 10px;
+			padding: 10px 10px;
+			width: 90%;
+			background-color: $tertiary-color;
+		}
+		button {
+			position: absolute;
+			right: 20px;
+			bottom: -60px;
+			font-size: 1.2rem;
+			font-weight: 700;
+			border-radius: 10px;
+			padding: 10px 30px;
+			color: $primary-color;
+			background-color: #fff;
+		}
+	}
+}

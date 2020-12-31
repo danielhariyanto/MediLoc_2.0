@@ -1,0 +1,19 @@
+@import './base';
+
+.search {
+	margin: 50px 0;
+	width: 100%;
+	input {
+		color: $secondary-color;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 1.1rem;
+		text-align: right;
+		border: 2px solid $secondary-color;
+		border-radius: 20px;
+		width: 100%;
+		padding: 10px 10px;
+		&::placeholder {
+			color: $secondary-color;
+		}
+	}
+}
