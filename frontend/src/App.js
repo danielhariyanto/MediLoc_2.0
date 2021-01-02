@@ -1,6 +1,7 @@
+import React from 'react';
 import Search from './components/Search'
 import Dashboard from './components/Dashboard'
-import Map from './components/Map'
+import MapView from './components/MapView';
 import './styles/app.scss'
 import logo from './assets/mediloc-logo.svg'
 
@@ -12,7 +13,7 @@ function App() {
 				<Search />
 				<Dashboard />
 			</div>
-			<Map />
+			<MapView/>
     	</div>
   	);
 }
