@@ -1,11 +1,11 @@
 @import './base';
 
 .search {
-	margin: 50px 0;
+	margin: 50px 0 20px 0;
 	width: 100%;
 	input {
 		color: $secondary-color;
-		font-family: 'Montserrat', sans-serif;
+		font-family: $main-font;
 		font-size: 1.1rem;
 		text-align: right;
 		border: 2px solid $secondary-color;
@@ -13,7 +13,7 @@
 		width: 100%;
 		padding: 10px 10px;
 		&::placeholder {
-			color: $secondary-color;
+			color: rgba(94, 177, 191, 0.2);
 		}
 	}
 }
