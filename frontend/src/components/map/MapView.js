@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import data from '../../assets/data';
+//import data from '../../assets/data';
 import Markers from './VenueMarkers';
 
 class MapView extends Component {
@@ -15,6 +15,16 @@ class MapView extends Component {
 
   render() {
     const { currentLocation, zoom } = this.state;
+
+    /*change this below:
+    
+    const [currentCoordinates, setCurrentCoordinates] = useState(0);
+
+    useEffect(() => {
+      fetch('/').then(res => res.json()).then(data => {
+        setCurrentCoordinates(data.coordinates);
+      });
+    }, []);*/
 
     return (
       <Map center={currentLocation} zoom={zoom}>
